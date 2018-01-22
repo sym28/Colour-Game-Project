@@ -28,7 +28,7 @@ resetButton.addEventListener('click', function(){
   colors = generateRandomColors(6);
   pickedColor = pickColor();
   rgbDisplay.textContent = pickedColor;
-  h1.textContent = 'testing';
+  
 
   for (var i = 0; i < squares.length; i++) {
     squares[i].style.backgroundColor = colors[i];
