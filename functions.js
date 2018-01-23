@@ -1,39 +1,58 @@
-var colors = generateRandomColors(6);
-
+var numSquares = 6;
+var colors = generateRandomColors(numSquares);
 var squares = document.querySelectorAll('.square');
 var pickedColor = pickColor();
 var rgbDisplay = document.getElementById('colorDisplay');
 var messageDisplay = document.getElementById('message');
-
 var resetButton = document.getElementById('click');
 var easybtn = document.querySelector('#easy');
 var hardbtn = document.querySelector('#hard');
-
 var h1 = document.querySelector('h1');
+
+
 
 easybtn.addEventListener('click', function(){
   hardbtn.classList.remove('selected');
   easybtn.classList.add('selected');
-  colors = generateRandomColors(3);
+  numSquares = 3;
+  colors = generateRandomColors(numSquares);
   pickedColor = pickColor();
   rgbDisplay.textContent = pickedColor;
+  
+  for(var i = 0; i<squares.length; i++){ //generate colours for only the first 3 squares + disable display for the rest
+    if(colors[i]){
+      squares[i].style.backgroundColor = colors[i];
+    } else{
+      squares[i].style.display = 'none';
+    }
+  }
+});
 
-})
 hardbtn.addEventListener('click', function(){
   easybtn.classList.remove('selected');
   hardbtn.classList.add('selected');
-})
-
-resetButton.addEventListener('click', function(){
-  colors = generateRandomColors(6);
+  numSquares = 6;
+  colors = generateRandomColors(numSquares);
   pickedColor = pickColor();
   rgbDisplay.textContent = pickedColor;
+  for(var i = 0; i<squares.length; i++){ 
+    squares[i].style.backgroundColor = colors[i];
+    squares[i].style.display = 'block';  
+  }
+});
+
+resetButton.addEventListener('click', function(){
+  colors = generateRandomColors(numSquares);
+  pickedColor = pickColor();
+  rgbDisplay.textContent = pickedColor;
+  messageDisplay.textContent = '';
+  this.textContent = 'New Colours';
   
 
   for (var i = 0; i < squares.length; i++) {
     squares[i].style.backgroundColor = colors[i];
   }
-  h1.style.backgroundColor = '#232323';
+  h1.style.backgroundColor = 'steelblue';
 })
 
 
